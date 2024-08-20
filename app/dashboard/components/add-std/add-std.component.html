@@ -1,0 +1,57 @@
+<div class="flex items-center justify-center min-h-screen bg-slate-100">
+    <div class="w-full max-w-lg p-8 bg-white shadow-lg rounded-lg border border-gray-300">
+      <mat-card-title class="text-3xl font-bold text-center text-blue-700 mb-6">Add Student</mat-card-title>
+      <form [formGroup]="addStudentForm" class="mt-4" (ngSubmit)="onSubmit()">
+        
+        <!-- Name Field -->
+        <mat-form-field  class="w-full mb-4" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter student name" required>
+          <mat-error *ngIf="addStudentForm.get('name')!.invalid && addStudentForm.get('name')!.touched">
+            Name is required.
+          </mat-error>
+        </mat-form-field>
+        
+        <!-- Email Field -->
+        <mat-form-field  class="w-full mb-4" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter student email" required>
+          <mat-error *ngIf="addStudentForm.get('email')!.invalid && addStudentForm.get('email')!.touched">
+            <ng-container *ngIf="addStudentForm.get('email')!.hasError('required')">Email is required.</ng-container>
+            <ng-container *ngIf="addStudentForm.get('email')!.hasError('email')">Invalid email format.</ng-container>
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Password Field -->
+        <mat-form-field  class="w-full mb-4" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Enter password" required>
+          <mat-error *ngIf="addStudentForm.get('password')!.invalid && addStudentForm.get('password')!.touched">
+            <ng-container *ngIf="addStudentForm.get('password')!.hasError('required')">Password is required.</ng-container>
+            <ng-container *ngIf="addStudentForm.get('password')!.hasError('minlength')">Password must be at least 6 characters long.</ng-container>
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Image Upload -->
+        <div class="w-full mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="file">
+            Upload Image
+          </label>
+          <input
+            type="file"
+            id="file"
+            (change)="onFileChange($event)"
+            accept="image/*"
+            class="border border-gray-300 rounded-lg p-2 w-full"
+          />
+          <mat-error *ngIf="imageError">{{ imageError }}</mat-error>
+        </div>
+    
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" class="w-full h-12 text-lg" [disabled]="addStudentForm.invalid">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+  

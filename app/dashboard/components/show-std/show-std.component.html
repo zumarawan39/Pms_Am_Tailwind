@@ -1,0 +1,75 @@
+<button mat-raised-button color="primary" class="my-5" (click)="openDialog()">Add Student</button>
+
+<div class="cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 ">
+  <div *ngFor="let student of students" class="bg-slate-100  border-black shadow-lg rounded-lg overflow-hidden flex flex-col justify-between transition-transform transform hover:scale-105 hover:bg-white  ">
+    <img [src]="student.image" alt="Student image" class="w-full h-64 object-contain">
+    <div class="p-4 flex flex-col flex-grow">
+      <div class="flex-grow">
+        <h2 class="text-xl font-bold mb-2">{{ student.name }}</h2>
+        <p class="text-gray-700 mb-1">{{ student.email }}</p>
+        <p class="text-gray-600">Password: {{ student.password }}</p>
+      </div>
+      <div class="flex justify-end gap-4 mt-4">
+        <button 
+          class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition-colors duration-200" 
+          (click)="openEditDialog(student)">
+          Edit
+        </button>
+        <button
+          class="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600 transition-colors duration-200"
+          (click)="openConfirmationDialog(student._id)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit Dialog Modal -->
+<div *ngIf="isEditDialogOpen" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-lg">
+    <div class="px-6 py-4 border-b">
+      <h3 class="text-xl font-semibold">Edit Student</h3>
+    </div>
+    <div class="px-6 py-4">
+      <div class="mb-4">
+        <label class="block text-gray-700">Name</label>
+        <input 
+          class="w-full px-3 py-2 border rounded" 
+          [(ngModel)]="editStudentData.name">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Email</label>
+        <input 
+          class="w-full px-3 py-2 border rounded" 
+          [(ngModel)]="editStudentData.email">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Password</label>
+        <input 
+          class="w-full px-3 py-2 border rounded" 
+          [(ngModel)]="editStudentData.password" 
+          type="password">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Image URL</label>
+        <input 
+          class="w-full px-3 py-2 border rounded" 
+          [(ngModel)]="editStudentData.image">
+      </div>
+    </div>
+    <div class="px-6 py-4 border-t flex justify-end gap-4">
+      <button 
+        class="bg-gray-500 text-white px-4 py-2 rounded" 
+        (click)="closeEditDialog()">
+        Cancel
+      </button>
+      <button 
+        class="bg-blue-500 text-white px-4 py-2 rounded" 
+        (click)="saveEdit()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

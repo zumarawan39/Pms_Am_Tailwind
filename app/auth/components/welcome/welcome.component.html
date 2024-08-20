@@ -1,0 +1,29 @@
+
+<main class="bg-gradient-to-r from-blue-500 to-purple-600 h-screen flex items-center justify-center">
+    <div class="container mx-auto">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl text-white font-bold">Choose Your Authority</h1>
+        <p class="text-lg text-white mt-4">Select one of the options below</p>
+      </div>
+  
+      <div class="flex justify-center space-x-10">
+        <!-- Left Option -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 cursor-pointer"  (click)="teacher()">
+          <img src="assets/images/images1.jpg" alt="Left Option" class="w-full h-52 object-cover">
+          <div class="px-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mt-2">Teacher</h2>
+          </div>
+        </div>
+  
+        <!-- Right Option -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 cursor-pointer" (click)="student()">
+          <img src="assets/images/images1 (1).jpg" alt="Right Option" class="w-full h-52 object-cover object-top">
+          <div class="px-20 py-2">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">Student</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  
